@@ -371,12 +371,55 @@ compileExp n (EId i) = do
     -- use `s_call`
     -- if n==TopLevel and the type is not void use `s_drop`
 
--- compileExp n (EIncr id@(EId i)) = do
-    -- make a case distinction on whether the type of `EId i` is `Type_int` or `Type_double`
+compileExp n (EIncr id@(EId i)) = do
+    t <- getType id
+    v <- getVarName i
+    if t == Type_double then return
+            [s_local_get v, s_f64_const 1, s_f64_add, s_local_tee v]
+        else return $
+            [s_local_get v, s_i32_const 1, s_i32_add, s_local_tee v]
     
--- compileExp n (EPIncr id@(EId i)) = do
--- compileExp n (EDecr id@(EId i)) = do
--- compileExp n (EPDecr id@(EId i)) = do
+compileExp n (EPIncr id@(EId i)) = do
+    t <- getType id
+    v <- getVarName i
+    if t == Type_double then return $
+        [s_local_get v] ++
+        [s_local_get v] ++
+        [s_f64_const 1] ++
+        [s_f64_add] ++
+        [s_local_set v] ++
+        if n == Nested then [] else [s_drop]
+    else return $
+        [s_local_get v] ++
+        [s_local_get v] ++
+        [s_i32_const 1] ++
+        [s_i32_add] ++
+        [s_local_set v] ++
+        if n == Nested then [] else [s_drop]
+compileExp n (EDecr id@(EId i)) = do
+    t <- getType id
+    v <- getVarName i
+    if t == Type_double then return
+        [s_local_get v, s_f64_const 1, s_f64_sub, s_local_tee v] 
+    else return
+        [s_local_get v, s_i32_const 1, s_i32_sub, s_local_tee v]
+compileExp n (EPDecr id@(EId i)) = do
+    t <- getType id
+    v <- getVarName i
+    if t == Type_double then return $
+        [s_local_get v] ++
+        [s_local_get v] ++
+        [s_f64_const 1] ++
+        [s_f64_sub] ++
+        [s_local_set v] ++
+        if n == Nested then [] else [s_drop]
+    else return $
+        [s_local_get v] ++
+        [s_local_get v] ++
+        [s_i32_const 1] ++
+        [s_i32_sub] ++
+        [s_local_set v] ++
+        if n == Nested then [] else [s_drop]
 
 -- for the following use `compileArith`
 compileExp _ (ETimes e1 e2) = compileArith e1 e2 s_i32_mul s_f64_mul
@@ -393,8 +436,18 @@ compileExp _ (ENEq e1 e2)   =  compileArith e1 e2 s_i32_ne s_f64_ne
 
 
 -- for And and Or use if/then/else
--- compileExp _ (EAnd e1 e2) = do
--- compileExp _ (EOr e1 e2) = do
+compileExp _ (EAnd e1 e2) = do
+    s_e1 <- compileExp Nested e1
+    s_e2 <- compileExp Nested e2
+    let inner = s_e2 ++ [s_if_then_else (compileType Type_int) [s_i32_const 1] [s_i32_const 0]]
+    let outer = s_e1 ++ [s_if_then_else (compileType Type_int) inner [s_i32_const 0]]
+    return $ outer
+compileExp _ (EOr e1 e2) = do
+    s_e1 <- compileExp Nested e1
+    s_e2 <- compileExp Nested e2
+    let inner = s_e2 ++ [s_if_then_else (compileType Type_int) [s_i32_const 1] [s_i32_const 0]]
+    let outer = s_e1 ++ [s_if_then_else (compileType Type_int) [s_i32_const 1] inner]
+    return $ outer
 
 compileExp n (EAss (EId i) e) = do
     s_e <- compileExp Nested e

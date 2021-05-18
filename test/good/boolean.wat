@@ -18,9 +18,33 @@
   (local.set $bt$0)
   (i32.const 0)
   (local.set $bf$0)
+  (local.get $bf$0)
+  (if
+   (result i32)
+   (then (if (result i32) (then (i32.const 1)) (else (i32.const 0))))
+   (else (i32.const 0))
+  )
   (local.set $bsilent1$0)
+  (local.get $bt$0)
+  (if
+   (result i32)
+   (then (i32.const 1))
+   (else (if (result i32) (then (i32.const 1)) (else (i32.const 0))))
+  )
   (local.set $bsilent2$0)
+  (local.get $bt$0)
+  (if
+   (result i32)
+   (then (if (result i32) (then (i32.const 1)) (else (i32.const 0))))
+   (else (i32.const 0))
+  )
   (local.set $bnoisy1$0)
+  (local.get $bf$0)
+  (if
+   (result i32)
+   (then (i32.const 1))
+   (else (if (result i32) (then (i32.const 1)) (else (i32.const 0))))
+  )
   (local.set $bnoisy2$0)
   (i32.const 0)
   return

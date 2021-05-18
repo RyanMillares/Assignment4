@@ -19,6 +19,16 @@
   i32.le_s
   i32.ge_s
   i32.ne
+  (if
+   (result i32)
+   (then (if (result i32) (then (i32.const 1)) (else (i32.const 0))))
+   (else (i32.const 0))
+  )
+  (if
+   (result i32)
+   (then (i32.const 1))
+   (else (if (result i32) (then (i32.const 1)) (else (i32.const 0))))
+  )
   (i32.const 0)
   return
  )
