@@ -11,6 +11,8 @@
   (local $ii$1 i32)
   (local $ix$3 i32)
   (local $ix$1 i32)
+  (local.set $ix$0)
+  return
  )
  (export "main" (func $main))
 )

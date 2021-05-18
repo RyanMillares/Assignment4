@@ -257,20 +257,22 @@ compileStm (SDecls ty ids) = do
     -- insert variables into the environment
     modify (\(m, c) -> (foldl (\m' i -> M.insert i (ty,c) m') m ids, c))
     return []
-{- 
-compileStm (SInit ty i e) = do
-    -- insert variable into the environment:
-    modify (\(m, c) -> (M.insert i (ty,c) m, c)) 
-    -- getVarName
-    -- compile expression using `compileExp Nested e`
-    -- return the code that evaluates the expression and
-    -- assigns the value to the variable
 
-compileStm (SReturn e) = 
-    -- compile expression
-    -- return the code that evaluates the expressions and 
-    -- returns the value
--}
+
+compileStm (SInit ty i e) = do
+    modify (\(m, c) ->  (M.insert i (ty,c) m, c))
+    s_e <- compileExp Nested e
+    v <- getVarName i
+    return $
+        s_e++
+        [s_local_set v]
+
+compileStm (SReturn e) = do
+    s_e <- compileExp Nested e
+    return $
+      s_e++
+      [s_return]
+
 
 compileStm SReturnVoid = return []
 
