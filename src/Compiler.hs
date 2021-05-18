@@ -341,7 +341,7 @@ getType (EGtEq _ _) = return $ Type_bool
 getType (EEq _ _) = return $ Type_bool
 getType (ENEq _ _) = return $ Type_bool
 getType (EAnd _ _) = return $ Type_bool
-getType (EOr _ _) = return $ Type_bool
+getType (EOr _ _) =  return $ Type_bool
 getType (EAss e _) = getType e
 getType (ETyped e _) = getType e
 

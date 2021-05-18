@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "scanf": "^1.1.1",
+    "scanf": "^1.1.2",
     "wabt": "^1.0.13"
   }
 }
