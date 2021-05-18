@@ -5,5 +5,6 @@ int main() {
   printInt(x);
   printInt((x=10)+x+++x);
   printInt(x);
+  printInt(x);
   return 0;
 }
