@@ -11,6 +11,7 @@
   (local $im$0 i32)
   (i32.const 0)
   (local.set $in$0)
+  (local.get $in$0)
   (local.set $im$0)
   (i32.const 0)
   return

@@ -360,8 +360,10 @@ compileExp n (EInt i) = return $ if n == Nested then [s_i32_const i] else []
 
 compileExp n (EDouble i) = return $ if n == Nested then [s_f64_const i] else []
 
--- compileExp n (EId i) = do
-    -- use `getVarName`
+compileExp n (EId i) = do
+    v <- getVarName i
+    return $ if n == Nested then [s_local_get v] else []
+
 
 -- compileExp n x@(EApp (Id i) args) = do 
     -- use `mapM` to iterate `compileExp Nested` over `args`
