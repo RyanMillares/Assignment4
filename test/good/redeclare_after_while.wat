@@ -9,8 +9,10 @@
   (local $in$0 i32)
   (local $im$1 i32)
   (local $im$0 i32)
+  (i32.const 0)
   (local.set $in$0)
   (local.set $im$0)
+  (i32.const 0)
   return
  )
  (export "main" (func $main))

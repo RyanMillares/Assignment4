@@ -10,8 +10,11 @@
   (local $iret$0 i32)
   (local $ii$0 i32)
   (local.set $iarg$0)
+  (i32.const 1)
   (local.set $iret$0)
+  (i32.const 1)
   (local.set $ii$0)
+  (i32.const 0)
   return
  )
  (export "main" (func $main))

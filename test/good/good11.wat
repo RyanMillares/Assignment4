@@ -9,8 +9,11 @@
   (local $isum$0 i32)
   (local $inum$0 i32)
   (local $ix$0 i32)
+  (i32.const 0)
   (local.set $isum$0)
+  (i32.const 0)
   (local.set $inum$0)
+  (i32.const 0)
   return
  )
  (export "main" (func $main))

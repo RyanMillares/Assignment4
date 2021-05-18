@@ -10,6 +10,7 @@
   (local $ii$0 i32)
   (local $biPrime$2 i32)
   (local $ij$2 i32)
+  (i32.const 0)
   return
  )
  (export "main" (func $main))

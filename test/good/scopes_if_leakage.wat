@@ -14,6 +14,7 @@
   (local.set $bvar$0)
   (local.set $bvar1$0)
   (local.set $bvar2$0)
+  (i32.const 0)
   return
  )
  (export "main" (func $main))

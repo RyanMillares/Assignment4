@@ -354,11 +354,11 @@ data Nesting = TopLevel | Nested deriving Eq
 compileExp :: MonadState Env m => Nesting -> Exp -> m [SExp]
 compileExp n ETrue = return $ if n == Nested then [s_i32_const 1] else []
 
--- compileExp n EFalse = 
+compileExp n EFalse = return $ if n == Nested then [s_i32_const 0] else []
 
--- compileExp n (EInt i) = 
+compileExp n (EInt i) = return $ if n == Nested then [s_i32_const i] else []
 
--- compileExp n (EDouble i) = 
+compileExp n (EDouble i) = return $ if n == Nested then [s_f64_const i] else []
 
 -- compileExp n (EId i) = do
     -- use `getVarName`
