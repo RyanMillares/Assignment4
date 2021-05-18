@@ -276,26 +276,38 @@ compileStm (SReturn e) = do
 
 compileStm SReturnVoid = return []
 
--- compileStm (SWhile cond s) = do
+compileStm (SWhile cond s) = do
+    s' <- pushPop $ compileStm s
+    s_cond <- compileExp Nested cond
+    return $ 
+        [s_block $
+        [s_loop $ 
+        s_cond ++ [s_i32_eqz] ++ [s_br_if 1] ++ s' ++ [s_br 0]]]
     -- compile condition
     -- use pushPop to compile statement
     -- return `[ s_block [s_loop ...]]` 
     -- to fill in the ... proceed as in fibonacci.wat
-
--- compileStm (SBlock stms) = do
+compileStm (SBlock stms) = do
+    s_stms <- pushPop $ mapM compileStm stms
+    return $ concat s_stms
     -- use pushpop as for SWhile
     -- use `mapM` to iterate `compileStm` over the list `stms`
     -- you may want to use `concat :: [[a]] -> [a]` (hoogle it) to flatten a list of lists of statements
     -- no need to use `s_block` since C++ blocks are just a way to do variable shadowing, which we already took care of with `collectDecls`
 
--- compileStm s@(SIfElse cond s1 s2) = do
+compileStm s@(SIfElse cond s1 s2) = do
+    s_cond <- pushPop $ compileExp Nested cond
+    s_if <- pushPop $ compileStm s1
+    s_else <- pushPop $ compileStm s2
+    t <- getReturn s
+    return $ s_cond ++ [s_if_then_else (compileType t) s_if s_else]
     -- compile the condition
     -- use pushpop to compile the branches
     -- use getReturn to get the type of the if/then/else block
     -- put the condition on the stack, then use s_if_then_else
 
 -- delete the line below after implementing the above
-compileStm _ = return []
+-- compileStm _ = return []
 
 -- computes the return type of the given statement.
 -- if a return x statement occurs, getReturn returns the type of x
@@ -365,11 +377,13 @@ compileExp n (EId i) = do
     return $ if n == Nested then [s_local_get v] else []
 
 
--- compileExp n x@(EApp (Id i) args) = do 
-    -- use `mapM` to iterate `compileExp Nested` over `args`
-    -- get the type of `EApp (Id i) args` 
-    -- use `s_call`
-    -- if n==TopLevel and the type is not void use `s_drop`
+compileExp n x@(EApp (Id i) args) = do 
+    s_args <- mapM (compileExp Nested) args
+    ty <- getType x
+    return $
+        concat s_args ++
+        [s_call i] ++
+        if n == TopLevel && ty /= Type_void then [s_drop] else []
 
 compileExp n (EIncr id@(EId i)) = do
     t <- getType id
@@ -457,7 +471,7 @@ compileExp n (EAss (EId i) e) = do
 compileExp n (ETyped e _) = compileExp n e
 
 -- delete after implementing the above
-compileExp _ _ = return []
+--  compileExp _ _ = return []
 
 compileArith e1 e2 intOp doubleOp = do
     s_e1 <- compileExp Nested e1
