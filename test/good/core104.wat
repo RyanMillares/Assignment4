@@ -307,6 +307,6 @@
   i32.add
   return
  )
- (func $main (result i32) (local $ix$0 i32) (local.get $ix$0) return)
+ (func $main (result i32) (local $ix$0 i32) (local.set $ix$0) (local.get $ix$0) return)
  (export "main" (func $main))
 )
