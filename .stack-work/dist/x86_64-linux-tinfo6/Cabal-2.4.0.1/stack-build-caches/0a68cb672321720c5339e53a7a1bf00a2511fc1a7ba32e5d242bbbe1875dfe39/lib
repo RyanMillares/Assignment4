@@ -1,7 +1,7 @@
 /mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/src/AbsCPP.hs:
   hash: 4c61df823853cc7bc7fffe58787451b78bf8e8d4593667882c8d2b5b71fbed40
 /mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/src/Compiler.hs:
-  hash: 64efef8338b1060e0055e0f829fe20c041e76e877d185812d2eca66f25b219f1
+  hash: a9e702c9fb126c4d10a1aefe4f547db805e0ace42408886b5918295fa911e479
 /mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/src/ParCPP.hs:
   hash: 6e032ca6abe8aaffc5c1dd00f91309488697b637c9081db33235c332e5aa22c4
 /mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/src/ErrM.hs:
@@ -25,7 +25,7 @@
 /home/rmillares/.stack/programs/x86_64-linux/ghc-tinfo6-8.6.4/lib/ghc-8.6.4/include/ghcautoconf.h:
   hash: 6d4f30152de0bca5ee053a85e607a3687b5de1024967a8c8c69fa076e83cf342
 ? /mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/.stack-work/dist/x86_64-linux-tinfo6/Cabal-2.4.0.1/build/autogen/cabal_macros.h
-: hash: 6f6ffd26adaa8d13dc679d220d4109fd47bf06dd841dd753ec4bcc82edc7b637
+: hash: 0205cd771f57b42a7de79b81f71035f593b594bdd8e6e14613be23a893308eda
 /home/rmillares/.stack/programs/x86_64-linux/ghc-tinfo6-8.6.4/lib/ghc-8.6.4/include/ghcconfig.h:
   hash: 03f4611ae97decc9e8c76c212bf7886d003b29d5c62b43fee6623a799f6e5fdf
 /home/rmillares/.stack/programs/x86_64-linux/ghc-tinfo6-8.6.4/lib/ghc-8.6.4/include/ghcversion.h:

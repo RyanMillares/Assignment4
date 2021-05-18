@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/.stack-work/install/x86_64-linux-tinfo6/0a68cb672321720c5339e53a7a1bf00a2511fc1a7ba32e5d242bbbe1875dfe39/8.6.4/bin"
-libdir     = "/mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/.stack-work/install/x86_64-linux-tinfo6/0a68cb672321720c5339e53a7a1bf00a2511fc1a7ba32e5d242bbbe1875dfe39/8.6.4/lib/x86_64-linux-ghc-8.6.4/CPPCompiler-0.1.0.0-DplpX4Wrb1M2e5SmkUIF3M"
+libdir     = "/mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/.stack-work/install/x86_64-linux-tinfo6/0a68cb672321720c5339e53a7a1bf00a2511fc1a7ba32e5d242bbbe1875dfe39/8.6.4/lib/x86_64-linux-ghc-8.6.4/CPPCompiler-0.1.0.0-CrSpE0jcHU620Zd1DDgk25"
 dynlibdir  = "/mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/.stack-work/install/x86_64-linux-tinfo6/0a68cb672321720c5339e53a7a1bf00a2511fc1a7ba32e5d242bbbe1875dfe39/8.6.4/lib/x86_64-linux-ghc-8.6.4"
 datadir    = "/mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/.stack-work/install/x86_64-linux-tinfo6/0a68cb672321720c5339e53a7a1bf00a2511fc1a7ba32e5d242bbbe1875dfe39/8.6.4/share/x86_64-linux-ghc-8.6.4/CPPCompiler-0.1.0.0"
 libexecdir = "/mnt/c/Users/milla/CPSC231/CPSC402/cpsc_402/Assignment4/.stack-work/install/x86_64-linux-tinfo6/0a68cb672321720c5339e53a7a1bf00a2511fc1a7ba32e5d242bbbe1875dfe39/8.6.4/libexec/x86_64-linux-ghc-8.6.4/CPPCompiler-0.1.0.0"
