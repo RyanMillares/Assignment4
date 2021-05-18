@@ -379,18 +379,18 @@ compileExp n (EId i) = do
 -- compileExp n (EPDecr id@(EId i)) = do
 
 -- for the following use `compileArith`
-{-
-compileExp _ (ETimes e1 e2) =  
-compileExp _ (EDiv e1 e2)   =  
-compileExp _ (EPlus e1 e2)  =  
-compileExp _ (EMinus e1 e2) =  
-compileExp _ (ELt e1 e2)    =  
-compileExp _ (EGt e1 e2)    =  
-compileExp _ (ELtEq e1 e2)  =  
-compileExp _ (EGtEq e1 e2)  =  
-compileExp _ (EEq e1 e2)    =  
-compileExp _ (ENEq e1 e2)   =  
--}
+compileExp _ (ETimes e1 e2) = compileArith e1 e2 s_i32_mul s_f64_mul
+compileExp _ (EDiv e1 e2)   = compileArith e1 e2 s_i32_div_s s_f64_div
+compileExp _ (EPlus e1 e2)  = compileArith e1 e2 s_i32_add s_f64_add
+compileExp _ (EMinus e1 e2) = compileArith e1 e2 s_i32_sub s_f64_sub
+
+compileExp _ (ELt e1 e2)    =  compileArith e1 e2 s_i32_lt_s s_f64_lt
+compileExp _ (EGt e1 e2)    =  compileArith e1 e2 s_i32_gt_s s_f64_gt
+compileExp _ (ELtEq e1 e2)  =  compileArith e1 e2 s_i32_le_s s_f64_le
+compileExp _ (EGtEq e1 e2)  =  compileArith e1 e2 s_i32_ge_s s_f64_ge
+compileExp _ (EEq e1 e2)    =  compileArith e1 e2 s_i32_eq s_f64_eq
+compileExp _ (ENEq e1 e2)   =  compileArith e1 e2 s_i32_ne s_f64_ne
+
 
 -- for And and Or use if/then/else
 -- compileExp _ (EAnd e1 e2) = do

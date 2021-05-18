@@ -4,6 +4,16 @@
  (import "env" "printInt" (func $printInt (param i32)))
  (import "env" "printDouble" (func $printDouble (param f64)))
  (func $id (param $ix$0 i32) (result i32) (local.get $ix$0) return)
- (func $main (result i32) (local $iz$0 i32) (i32.const 0) (local.set $iz$0) (i32.const 0) return)
+ (func
+  $main
+  (result i32)
+  (local $iz$0 i32)
+  (i32.const 0)
+  (local.set $iz$0)
+  i32.add
+  i32.eq
+  (i32.const 0)
+  return
+ )
  (export "main" (func $main))
 )

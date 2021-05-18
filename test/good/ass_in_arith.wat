@@ -10,6 +10,7 @@
   (local $iy$0 i32)
   (i32.const 50)
   (local.set $ix$0)
+  i32.add
   (local.set $iy$0)
   (i32.const 0)
   return

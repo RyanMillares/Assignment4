@@ -15,6 +15,9 @@
   (i32.const 0)
   (local.set $in$0)
   (local.get $bvar$0)
+  (i32.const 1)
+  i32.eq
+  (local.get $bvar$0)
   (local.set $bvar2$0)
   (i32.const 0)
   return

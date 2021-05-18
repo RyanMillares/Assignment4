@@ -9,6 +9,9 @@
   (local $ix$0 i32)
   (local $id$0 i32)
   (local.set $ix$0)
+  (local.get $ix$0)
+  (i32.const 2)
+  i32.div_s
   (local.set $id$0)
   (i32.const 0)
   return
